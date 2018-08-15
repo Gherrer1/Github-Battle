@@ -23,6 +23,7 @@ li {
 #repo-list li {
   float: left;
   width: 12.5%;
+  height: 300px;
 }
 
 .repo-avatar {

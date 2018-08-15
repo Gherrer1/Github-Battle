@@ -35,35 +35,36 @@ class Popular extends React.Component {
     };
 
     this.handleClick = this.handleClick.bind(this);
+    this.fetchPopularRepos = this.fetchPopularRepos.bind(this);
   }
 
   componentDidMount() {
-    var that = this;
-    api.fetchPopularRepos('Javascript')
+    this.fetchPopularRepos();
+  }
+
+  fetchPopularRepos() {
+    api.fetchPopularRepos(this.state.selectedLang)
       .then(repos => console.log(repos) || repos)
       .then(repos => repos.map(repo => ({
-          stars: repo.stargazers_count,
-          avatar_url: repo.owner.avatar_url,
-          name: repo.name,
-          owner_name: repo.owner.login,
-          id: repo.id
-        }))
-      )
-      .then(repos => that.setState({
+        stars: repo.stargazers_count,
+        avatar_url: repo.owner.avatar_url,
+        name: repo.name,
+        owner_name: repo.owner.login,
+        id: repo.id
+      })))
+      .then(repos => this.setState({
         repoData: repos
       }));
   }
 
   handleClick(lang) {
-    this.setState(function() {
-      return {
+    this.setState({
         selectedLang: lang
-      }
-    });
+    }, this.fetchPopularRepos);
   }
 
   render() {
-    var languages = ["All", "Python", "Java", "Swift", "CSS"];
+    var languages = ["All", "JavaScript", "Ruby", "Java", "CSS", "Python"];
     return (
       <div>
         <SelectLanguage languages={languages} handleClick={this.handleClick} activeLang={this.state.selectedLang} />
