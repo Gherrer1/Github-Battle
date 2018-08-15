@@ -1,20 +1,41 @@
 var React = require('react');
+var PropTypes = require('prop-types');
 
 function RepoItem(props) {
   return (
-    <li>
-      <p>#{props.rank}</p>
-      <img src={props.repo.owner.avatar_url} className="repo-avatar" />
-      <p>{props.repo.name}</p>
-      <p>@{props.repo.owner.login}</p>
-      <p>{props.repo.stargazers_count} stars</p>
+    <li className="popular-item">
+      <div>#{props.rank}</div>
+      <ul className="space-list-item">
+        <li>
+          <img
+            src={props.repo.owner.avatar_url}
+            className="repo-avatar"
+            alt={`Avatar for ${props.repo.owner.login}`}
+          />
+        </li>
+        <li><a href={props.repo.html_url} >{props.repo.name}</a></li>
+        <li>@{props.repo.owner.login}</li>
+        <li>{props.repo.stargazers_count} stars</li>
+      </ul>
     </li>
   );
 }
+RepoItem.propTypes = {
+  rank: PropTypes.number.isRequired,
+  repo: PropTypes.shape({
+    owner: PropTypes.shape({
+      login: PropTypes.string.isRequired,
+      avatar_url: PropTypes.string.isRequired
+    }).isRequired,
+    stargazers_count: PropTypes.number.isRequired,
+    html_url: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired
+};
 
 function ReposList(props) {
   return (
-    <ul className="repo-list" >
+    <ul className="popular-list" >
       {
         props.repos.map((repo, index) => (<RepoItem key={repo.id} rank={index+1} repo={repo} />))
       }

@@ -26,12 +26,23 @@ li {
   cursor: pointer;
 }
 
-.repo-list {
+.popular-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.popular-item {
+  margin: 20px;
+  text-align: center;
+}
+
+.space-list-item {
+  margin: 7px;
 }
 
 .repo-avatar {
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
 }
