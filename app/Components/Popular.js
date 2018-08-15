@@ -42,10 +42,11 @@ class Popular extends React.Component {
     this.fetchPopularRepos();
   }
 
+  // I was questioning whether this function belongs in the component as an instance method or as a static method.
+  // I think as an instance method because it uses and sets the state of the instance it's called on.
   fetchPopularRepos() {
     api.fetchPopularRepos(this.state.selectedLang)
-      .then(repos => console.log(repos) || repos)
-      .then(repos => repos.map(repo => ({
+      .then(repos => console.log(repos) || repos.map(repo => ({
         stars: repo.stargazers_count,
         avatar_url: repo.owner.avatar_url,
         name: repo.name,
