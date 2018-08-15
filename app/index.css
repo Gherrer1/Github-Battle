@@ -20,16 +20,6 @@ li {
   justify-content: center;
 }
 
-#repo-list li {
-  float: left;
-  width: 12.5%;
-  height: 300px;
-}
-
-.repo-avatar {
-  border-radius: 50%;
-}
-
 .languages li {
   margin: 10px;
   font-weight: bold;

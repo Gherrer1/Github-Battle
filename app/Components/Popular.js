@@ -1,7 +1,5 @@
 var React = require('react');
 var PropTypes = require('prop-types');
-var RepoInfoList = require('./RepoInfoList');
-var api = require('../utils/api');
 
 function SelectLanguage(props) {
   return (
@@ -30,46 +28,25 @@ class Popular extends React.Component {
     super(props);
 
     this.state = {
-      selectedLang: "All",
-      repoData: []
+      selectedLang: "All"
     };
 
     this.handleClick = this.handleClick.bind(this);
-    this.fetchPopularRepos = this.fetchPopularRepos.bind(this);
-  }
-
-  componentDidMount() {
-    this.fetchPopularRepos();
-  }
-
-  // I was questioning whether this function belongs in the component as an instance method or as a static method.
-  // I think as an instance method because it uses and sets the state of the instance it's called on.
-  fetchPopularRepos() {
-    api.fetchPopularRepos(this.state.selectedLang)
-      .then(repos => console.log(repos) || repos.map(repo => ({
-        stars: repo.stargazers_count,
-        avatar_url: repo.owner.avatar_url,
-        name: repo.name,
-        owner_name: repo.owner.login,
-        id: repo.id
-      })))
-      .then(repos => this.setState({
-        repoData: repos
-      }));
   }
 
   handleClick(lang) {
-    this.setState({
+    this.setState(function() {
+      return {
         selectedLang: lang
-    }, this.fetchPopularRepos);
+      }
+    });
   }
 
   render() {
-    var languages = ["All", "JavaScript", "Ruby", "Java", "CSS", "Python"];
+    var languages = ["All", "Python", "Java", "Swift", "CSS"];
     return (
       <div>
         <SelectLanguage languages={languages} handleClick={this.handleClick} activeLang={this.state.selectedLang} />
-        <RepoInfoList repoList={this.state.repoData} />
       </div>
     );
   }
