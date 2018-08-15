@@ -25,3 +25,13 @@ li {
   font-weight: bold;
   cursor: pointer;
 }
+
+.repo-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.repo-avatar {
+  height: 100px;
+  width: 100px;
+}
