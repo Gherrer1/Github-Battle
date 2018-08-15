@@ -37,6 +37,11 @@ li {
   text-align: center;
 }
 
+.popular-rank {
+  font-size: 20px;
+  margin: 10px;
+}
+
 .space-list-item {
   margin: 7px;
 }

@@ -4,7 +4,7 @@ var PropTypes = require('prop-types');
 function RepoItem(props) {
   return (
     <li className="popular-item">
-      <div>#{props.rank}</div>
+      <div className="popular-rank">#{props.rank}</div>
       <ul className="space-list-item">
         <li>
           <img
@@ -42,5 +42,8 @@ function ReposList(props) {
     </ul>
   );
 }
+ReposList.propTypes = {
+  repos: PropTypes.array.isRequired,
+};
 
 module.exports = ReposList;
