@@ -1,5 +1,7 @@
 var React = require('react');
 var PropTypes = require('prop-types');
+var RepoInfoList = require('./RepoInfoList');
+var api = require('../utils/api');
 
 function SelectLanguage(props) {
   return (
@@ -28,10 +30,28 @@ class Popular extends React.Component {
     super(props);
 
     this.state = {
-      selectedLang: "All"
+      selectedLang: "All",
+      repoData: []
     };
 
     this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    var that = this;
+    api.fetchPopularRepos('Javascript')
+      .then(repos => console.log(repos) || repos)
+      .then(repos => repos.map(repo => ({
+          stars: repo.stargazers_count,
+          avatar_url: repo.owner.avatar_url,
+          name: repo.name,
+          owner_name: repo.owner.login,
+          id: repo.id
+        }))
+      )
+      .then(repos => that.setState({
+        repoData: repos
+      }));
   }
 
   handleClick(lang) {
@@ -47,6 +67,7 @@ class Popular extends React.Component {
     return (
       <div>
         <SelectLanguage languages={languages} handleClick={this.handleClick} activeLang={this.state.selectedLang} />
+        <RepoInfoList repoList={this.state.repoData} />
       </div>
     );
   }
