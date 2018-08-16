@@ -2,8 +2,8 @@ const React = require('react');
 import { Link } from 'react-router-dom';
 
 var Home = () => (
-  <div id="home">
-    <h3 className="home-title">Github Battle: Battle your friends... and stuff.</h3>
+  <div id="home-container">
+    <h1 className="home-title">Github Battle: Battle your friends... and stuff.</h1>
     <Link to="/battle">Battle</Link>
   </div>
 );
