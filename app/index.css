@@ -18,8 +18,11 @@ body {
   color: red;
 }
 
+.active {
+  font-weight: bold;
+}
+
 #home {
-  /* justify-content: center; */
   text-align: center;
   font-size: 30px;
 }
