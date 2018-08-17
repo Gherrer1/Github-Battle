@@ -1,19 +1,19 @@
-var React = require('react');
-var LanguageButton = require('./LanguageButton');
-var PropTypes = require('prop-types');
+const React = require('react');
+const LanguageButton = require('./LanguageButton');
+const PropTypes = require('prop-types');
 
 class LanguageButtonList extends React.Component {
   constructor(props) {
     super(props);
 
     this.handleButtonClick = this.handleButtonClick.bind(this);
-    this.state = { activeIndex: 0 };
+    this.state = {activeIndex: 0};
   }
 
   handleButtonClick(lang) {
-    var newActiveIndex = this.props.languages.indexOf(lang);
+    const newActiveIndex = this.props.languages.indexOf(lang);
     this.setState({
-      activeIndex: newActiveIndex
+      activeIndex: newActiveIndex,
     });
   }
 
@@ -38,7 +38,7 @@ class LanguageButtonList extends React.Component {
   }
 }
 LanguageButtonList.propTypes = {
-  languages: PropTypes.array.isRequired
+  languages: PropTypes.array.isRequired,
 };
 
 module.exports = LanguageButtonList;

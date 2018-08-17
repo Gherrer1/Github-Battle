@@ -1,5 +1,5 @@
-var React = require('react');
-var PropTypes = require('prop-types');
+const React = require('react');
+const PropTypes = require('prop-types');
 
 function RepoItem(props) {
   return (
@@ -25,19 +25,21 @@ RepoItem.propTypes = {
   repo: PropTypes.shape({
     owner: PropTypes.shape({
       login: PropTypes.string.isRequired,
-      avatar_url: PropTypes.string.isRequired
+      avatar_url: PropTypes.string.isRequired,
     }).isRequired,
     stargazers_count: PropTypes.number.isRequired,
     html_url: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-  }).isRequired
+  }).isRequired,
 };
 
 function ReposList(props) {
   return (
     <ul className="popular-list" >
       {
-        props.repos.map((repo, index) => (<RepoItem key={repo.id} rank={index+1} repo={repo} />))
+        props.repos.map((repo, index) =>
+          (<RepoItem key={repo.id} rank={index+1} repo={repo}
+        />))
       }
     </ul>
   );
