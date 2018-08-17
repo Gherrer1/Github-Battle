@@ -55,6 +55,15 @@ a {
   transform: translateY(1px);
 }
 
+.battle-view {
+  display: flex;
+  justify-content: center;
+}
+
+.player-item {
+  display: inline-block;
+  margin: 0 80px;
+}
 ul {
   padding: 0;
 }
