@@ -6,13 +6,16 @@ class PlayerViewContainer extends React.Component {
     super(props);
 
     this.state = {
-      username: null
+      username: null,
     };
   }
 
   render() {
     return (
-      <PlayerView username={this.state.username} playerNumber={this.props.playerNumber} />
+      <PlayerView
+        username={this.state.username}
+        playerNumber={this.props.playerNumber}
+      />
     );
   }
 }
