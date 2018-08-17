@@ -1,12 +1,12 @@
 const React = require('react');
-const PlayerView = require('./PlayerView');
+const PlayerViewContainer = require('./PlayerViewContainer');
 
 class Battle extends React.Component {
   render() {
     return (
       <div className="battle-view">
-        <PlayerView playerNumber="One" />
-        <PlayerView playerNumber="Two" />
+        <PlayerViewContainer playerNumber="One"/>
+        <PlayerViewContainer playerNumber="Twleve"/>
       </div>
     );
   }

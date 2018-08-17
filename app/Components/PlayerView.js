@@ -1,16 +1,19 @@
 const React = require('react');
-var unused = "Jeyy";
-class PlayerView extends React.Component {
-  render() {
+
+function PlayerView(props) {
     return (
-      <div className="player-item">
-        <h1>Player {this.props.playerNumber}</h1>
-        <input type="text" placeholder="github username"/>
-        <br />
-        <button>Submit</button>
-      </div>
+        <div className="player-item">
+            <h1>Player {props.playerNumber}</h1>
+            {
+            props.username === null ?
+                <input type="text" placeholder="github username"/>
+                :
+                <h2>{props.username}</h2>
+            }
+            <br />
+            <button>Submit</button>
+        </div>
     );
-  }
 }
 
 module.exports = PlayerView;
