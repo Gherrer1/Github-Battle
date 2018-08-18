@@ -2,19 +2,12 @@ const React = require('react');
 const PlayerView = require('./PlayerView');
 
 class PlayerViewContainer extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      username: null,
-    };
-  }
-
   render() {
     return (
       <PlayerView
-        username={this.state.username}
-        playerNumber={this.props.playerNumber}
+        onSubmit={this.props.onSubmit}
+        playerID={this.props.playerID}
+        playerData={this.props.playerData}
       />
     );
   }

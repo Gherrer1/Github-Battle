@@ -3,15 +3,24 @@ const React = require('react');
 function PlayerView(props) {
     return (
         <div className="player-item">
-            <h1>Player {props.playerNumber}</h1>
+            <h1>{props.playerID}</h1>
             {
-            props.username === null ?
-                <input type="text" placeholder="github username"/>
+            props.playerData === null ?
+                <div>
+                    <input type="text" placeholder="github username"/>
+                    <br />
+                    <button onClick={
+                        () => props.onSubmit('username', props.playerID)
+                    }>
+                        Submit
+                    </button>
+                </div>
                 :
-                <h2>{props.username}</h2>
+                <div>
+                    <img src={props.playerData.avatar_url} className="usr-img"/>
+                    <h2>{props.playerData.login}</h2>
+                </div>
             }
-            <br />
-            <button>Submit</button>
         </div>
     );
 }
