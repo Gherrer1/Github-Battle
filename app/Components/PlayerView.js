@@ -38,6 +38,7 @@ PlayerView.propTypes = {
     typedText: PropTypes.string.isRequired,
     handleType: PropTypes.func.isRequired,
     playerData: PropTypes.object,
+    onSubmit: PropTypes.func.isRequired,
 };
 
 module.exports = PlayerView;

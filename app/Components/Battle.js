@@ -1,4 +1,5 @@
 const React = require('react');
+const PropTypes = require('prop-types');
 const PlayerViewContainer = require('./PlayerViewContainer');
 // import {Link} from 'react-router-dom';
 
@@ -11,8 +12,17 @@ constructor(props) {
     'Player Two': null,
   };
 
-  this.fetchUserData = this.fetchUserData.bind(this);
+  this.handleSubmit = this.handleSubmit.bind(this);
 }
+
+  handleSubmit(username, playerID) {
+    this.setState({
+      [playerID]: {
+        login: username,
+        avatar_url: `https://github.com/${username}.png?size=200`,
+      },
+    });
+  }
 
   fetchUserData(username, playerID) {
     const api = require('../utils/api');
@@ -30,14 +40,14 @@ constructor(props) {
   render() {
     return (
       <div>
-        <div className="battle-view">
+        <div className="row">
           <PlayerViewContainer
-            onSubmit={this.fetchUserData}
+            onSubmit={this.handleSubmit}
             playerID="Player One"
             playerData={this.state['Player One']}
           />
           <PlayerViewContainer
-            onSubmit={this.fetchUserData}
+            onSubmit={this.handleSubmit}
             playerID="Player Two"
             playerData={this.state['Player Two']}
           />
@@ -54,5 +64,8 @@ constructor(props) {
     );
   }
 }
+Battle.propTypes = {
+  match: PropTypes.object,
+};
 
 module.exports = Battle;

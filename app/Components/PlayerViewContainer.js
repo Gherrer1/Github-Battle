@@ -1,4 +1,5 @@
 const React = require('react');
+const PropTypes = require('prop-types');
 const PlayerView = require('./PlayerView');
 
 class PlayerViewContainer extends React.Component {
@@ -30,5 +31,10 @@ class PlayerViewContainer extends React.Component {
     );
   }
 }
+PlayerViewContainer.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  playerID: PropTypes.string.isRequired,
+  playerData: PropTypes.object,
+};
 
 module.exports = PlayerViewContainer;

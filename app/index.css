@@ -55,9 +55,9 @@ a {
   transform: translateY(1px);
 }
 
-.battle-view {
+.row {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .player-item {
