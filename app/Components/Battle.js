@@ -1,6 +1,6 @@
 const React = require('react');
 const PlayerViewContainer = require('./PlayerViewContainer');
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 
 class Battle extends React.Component {
 constructor(props) {
@@ -17,7 +17,7 @@ constructor(props) {
   fetchUserData(username, playerID) {
     const api = require('../utils/api');
     console.log(username, playerID);
-    api.fetchUser('qerardo')
+    api.fetchUser(username)
       .then((users) => console.log(users) || this.setState({
         [playerID]: users[0],
       }));

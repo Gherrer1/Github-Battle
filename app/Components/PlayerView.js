@@ -1,4 +1,5 @@
 const React = require('react');
+const PropTypes = require('prop-types');
 
 function PlayerView(props) {
     return (
@@ -17,7 +18,7 @@ function PlayerView(props) {
                     />
                     <br />
                     <button onClick={
-                        () => props.onSubmit('username', props.playerID)
+                        () => props.onSubmit(props.typedText, props.playerID)
                     }>
                         Submit
                     </button>
@@ -31,5 +32,11 @@ function PlayerView(props) {
         </div>
     );
 }
+PlayerView.propTypes = {
+    playerID: PropTypes.string.isRequired,
+    typedText: PropTypes.string.isRequired,
+    handleType: PropTypes.func.isRequired,
+    playerData: PropTypes.object,
+};
 
 module.exports = PlayerView;
