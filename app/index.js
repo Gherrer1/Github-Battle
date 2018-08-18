@@ -1,6 +1,6 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var App = require('./Components/App');
+const React = require('react');
+const ReactDOM = require('react-dom');
+const App = require('./Components/App');
 require('./index.css');
 
 ReactDOM.render(<App />, document.getElementById('app'));

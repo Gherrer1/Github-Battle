@@ -113,3 +113,8 @@ li {
   height: 200px;
   width: 200px;
 }
+
+.play-btn {
+  display: flex;
+  justify-content: center;
+}

@@ -10,7 +10,7 @@ module.exports = {
   },
   fetchUser(username) {
     // const uri = `https://api.github.com/search/users?q=${username}&in=login`;
-    const uri =  `https://api.github.com/search/users?q=tom+repos:>42+followers:>1000`;
+    const uri = `https://api.github.com/search/users?q=tom+repos:>42+followers:>1000`;
     const encodedURI = window.encodeURI(uri);
 
     return axios.get(encodedURI)

@@ -1,5 +1,6 @@
 const React = require('react');
 const PlayerViewContainer = require('./PlayerViewContainer');
+import {Link} from 'react-router-dom';
 
 class Battle extends React.Component {
 constructor(props) {
@@ -24,17 +25,27 @@ constructor(props) {
 
   render() {
     return (
-      <div className="battle-view">
-        <PlayerViewContainer
-          onSubmit={this.fetchUserData}
-          playerID="Player One"
-          playerData={this.state['Player One']}
-        />
-        <PlayerViewContainer
-          onSubmit={this.fetchUserData}
-          playerID="Player Two"
-          playerData={this.state['Player Two']}
-        />
+      <div>
+        <div className="battle-view">
+          <PlayerViewContainer
+            onSubmit={this.fetchUserData}
+            playerID="Player One"
+            playerData={this.state['Player One']}
+          />
+          <PlayerViewContainer
+            onSubmit={this.fetchUserData}
+            playerID="Player Two"
+            playerData={this.state['Player Two']}
+          />
+        </div>
+        {this.state['PlayerOne'] !== null && this.state['Player Two'] !== null ?
+          <div className="play-btn">
+            {/* {<Link to="/">Play</Link>} */}
+            {JSON.stringify(this.props.match)}
+          </div>
+          :
+          null
+        }
       </div>
     );
   }

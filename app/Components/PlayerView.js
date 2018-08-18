@@ -7,7 +7,14 @@ function PlayerView(props) {
             {
             props.playerData === null ?
                 <div>
-                    <input type="text" placeholder="github username"/>
+                    <input
+                        type="text"
+                        placeholder="github username"
+                        value={props.typedText}
+                        onChange={(event) =>
+                            props.handleType(event.target.value)
+                        }
+                    />
                     <br />
                     <button onClick={
                         () => props.onSubmit('username', props.playerID)
