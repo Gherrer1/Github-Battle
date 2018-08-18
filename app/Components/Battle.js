@@ -18,8 +18,12 @@ constructor(props) {
     const api = require('../utils/api');
     console.log(username, playerID);
     api.fetchUser(username)
-      .then((users) => console.log(users) || this.setState({
-        [playerID]: users[0],
+      .then((users) => console.log(users) || {
+        login: users[0].login,
+        avatar_url: users[0].avatar_url,
+      })
+      .then((minimalUserData) => this.setState({
+        [playerID]: minimalUserData,
       }));
   }
 

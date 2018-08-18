@@ -17,9 +17,10 @@ function PlayerView(props) {
                         }
                     />
                     <br />
-                    <button onClick={
-                        () => props.onSubmit(props.typedText, props.playerID)
-                    }>
+                    <button onClick=
+                    {() => props.onSubmit(props.typedText, props.playerID)}
+                    disabled={props.typedText.length === 0}
+                    >
                         Submit
                     </button>
                 </div>
