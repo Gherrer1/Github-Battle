@@ -23,6 +23,8 @@ class BattleGround extends React.Component {
                 if (profileDataArr === null) {
                     return;
                 }
+                profileDataArr[0].won = true;
+                profileDataArr[1].won = false;
                 this.setState({
                     playerOneData: profileDataArr[0],
                     playerTwoData: profileDataArr[1],
@@ -36,13 +38,12 @@ class BattleGround extends React.Component {
         return (
             <div>
                 {p1 && p2 ?
-                    <div>
-                        {[p1, p2].map((player) => (
-                            <div
+                    <div className="row">
+                        {[p1, p2].map((player, index) => (
+                            <Result
                                 key={player.profile.id}
-                            >
-                                {JSON.stringify(player)}
-                            </div>
+                                playerData={player}
+                            />
                         ))}
                     </div>
                     :

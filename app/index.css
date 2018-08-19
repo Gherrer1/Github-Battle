@@ -126,6 +126,10 @@ li {
   align-items: center;
 }
 
+.not-centered {
+  width: 80%;
+}
+
 .column input {
   width: 80%;
   font-size: 16px;
