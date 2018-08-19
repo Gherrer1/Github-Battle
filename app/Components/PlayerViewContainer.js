@@ -1,23 +1,6 @@
 const React = require('react');
 const PropTypes = require('prop-types');
-
-function PlayerView(props) {
-  return (
-      <div className="player-item">
-        <div className="column">
-            <img src={props.playerData.avatar_url} className="usr-img"/>
-            <h2 className='username'>@{props.playerData.login}</h2>
-
-            <button onClick={() => props.onReset(props.playerID)}>Reset</button>
-        </div>
-      </div>
-  );
-}
-PlayerView.propTypes = {
-  playerData: PropTypes.object,
-  onReset: PropTypes.func.isRequired,
-  playerID: PropTypes.string.isRequired,
-};
+const PlayerView = require('./PlayerView');
 
 function PlayerInput({onInputChange, onSubmit, playerID, username}) {
   return (
@@ -92,7 +75,13 @@ class PlayerViewContainer extends React.Component {
       onReset={
         (playerID) => this.props.onReset(playerID) || this.resetUsername()
       }
-    />);
+    >
+      <button onClick={
+        () => this.props.onReset(this.props.playerID) || this.resetUsername()
+        }
+      >Reset
+      </button>
+    </PlayerView>);
   }
 }
 PlayerViewContainer.propTypes = {
