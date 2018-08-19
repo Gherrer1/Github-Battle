@@ -13,7 +13,14 @@ constructor(props) {
   };
 
   this.handleSubmit = this.handleSubmit.bind(this);
+  this.resetUser = this.resetUser.bind(this);
 }
+
+  resetUser(playerID) {
+    this.setState({
+      [playerID]: null,
+    });
+  }
 
   handleSubmit(event, username, playerID) {
     event.preventDefault();
@@ -46,11 +53,13 @@ constructor(props) {
             onSubmit={this.handleSubmit}
             playerID="Player One"
             playerData={this.state['Player One']}
+            onReset={this.resetUser}
           />
           <PlayerViewContainer
             onSubmit={this.handleSubmit}
             playerID="Player Two"
             playerData={this.state['Player Two']}
+            onReset={this.resetUser}
           />
         </div>
         {this.state['PlayerOne'] !== null && this.state['Player Two'] !== null ?

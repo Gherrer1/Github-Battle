@@ -4,15 +4,19 @@ const PropTypes = require('prop-types');
 function PlayerView(props) {
   return (
       <div className="player-item">
-        <div>
+        <div className="column">
             <img src={props.playerData.avatar_url} className="usr-img"/>
             <h2>{props.playerData.login}</h2>
+
+            <button onClick={() => props.onReset(props.playerID)}>Reset</button>
         </div>
       </div>
   );
 }
 PlayerView.propTypes = {
   playerData: PropTypes.object,
+  onReset: PropTypes.func.isRequired,
+  playerID: PropTypes.string.isRequired,
 };
 
 function PlayerInput({onInputChange, onSubmit, playerID, username}) {
@@ -58,6 +62,13 @@ class PlayerViewContainer extends React.Component {
     };
 
     this.storeTyped = this.storeTyped.bind(this);
+    this.resetUsername = this.resetUsername.bind(this);
+  }
+
+  resetUsername() {
+    this.setState({
+      username: '',
+    });
   }
 
   storeTyped(newTyped) {
@@ -77,6 +88,10 @@ class PlayerViewContainer extends React.Component {
     :
     (<PlayerView
       playerData={this.props.playerData}
+      playerID={this.props.playerID}
+      onReset={
+        (playerID) => this.props.onReset(playerID) || this.resetUsername()
+      }
     />);
   }
 }
@@ -84,6 +99,7 @@ PlayerViewContainer.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   playerID: PropTypes.string.isRequired,
   playerData: PropTypes.object,
+  onReset: PropTypes.func.isRequired,
 };
 
 module.exports = PlayerViewContainer;

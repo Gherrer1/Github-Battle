@@ -32,7 +32,7 @@ a {
   text-decoration: none;
 }
 
-#home-container a {
+#home-container a, .button {
   color: #e6e6e6;
   background: #0a0a0a;
   width: 200px;
@@ -60,9 +60,9 @@ a {
   justify-content: space-around;
 }
 
-.player-item {
+/* .player-item {
   margin: 0 80px;
-}
+} */
 ul {
   padding: 0;
 }
@@ -117,4 +117,26 @@ li {
 .play-btn {
   display: flex;
   justify-content: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  align-items: center;
+}
+
+.column input {
+  width: 80%;
+  font-size: 16px;
+  border-radius: 3px;
+  margin: 10px 0;
+  padding: 5px;
+  border: 1px solid rgba(0,0,0,0.43);
+}
+
+.column label {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 200;
 }
