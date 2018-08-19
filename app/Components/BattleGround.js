@@ -3,6 +3,7 @@ const api = require('../utils/api');
 const Result = require('./Result');
 const queryString = require('query-string');
 const Link = require('react-router-dom').Link;
+const Loading = require('./Loading');
 
 class BattleGround extends React.Component {
     constructor(props) {
@@ -60,7 +61,7 @@ class BattleGround extends React.Component {
                         ))}
                     </div>
                     :
-                    <div>Loading...</div>
+                    <Loading intervalTime={75}/>
                 }
             </div>
         );

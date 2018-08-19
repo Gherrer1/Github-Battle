@@ -69,9 +69,7 @@ class PlayerViewContainer extends React.Component {
       onInputChange={this.storeTyped}
     />)
     :
-    (<PlayerView
-      playerData={this.props.playerData}
-    >
+    (<PlayerView playerData={this.props.playerData}>
       <button onClick={
         () => this.props.onReset(this.props.playerID) || this.resetUsername()
         }

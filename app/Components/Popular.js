@@ -1,6 +1,7 @@
 const React = require('react');
 const PropTypes = require('prop-types');
 const ReposList = require('./ReposList');
+const Loading = require('./Loading');
 const api = require('../utils/api');
 
 function SelectLanguage(props) {
@@ -63,7 +64,8 @@ class Popular extends React.Component {
           activeLang={this.state.selectedLang}
         />
         {
-          !this.state.repos ? 'Loading...'
+          !this.state.repos ?
+          <Loading intervalTime={100} />
             :
           <ReposList repos={this.state.repos} />
         }
