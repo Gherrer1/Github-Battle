@@ -1,7 +1,8 @@
+/* eslint-disable */
 const path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+const config = {
   entry: './app/index.js',
   module: {
     rules: [
@@ -15,7 +16,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index_bundle.js',
+    filename: process.env.NODE_ENV === 'production' ? 'prod_bundle.js' : 'index_bundle.js',
     publicPath: '/'
   },
   plugins: [
@@ -26,5 +27,7 @@ module.exports = {
   devServer: {
     historyApiFallback: true
   },
-  mode: 'development'
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development'
 }
+
+module.exports = config;
