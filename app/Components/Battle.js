@@ -15,7 +15,8 @@ constructor(props) {
   this.handleSubmit = this.handleSubmit.bind(this);
 }
 
-  handleSubmit(username, playerID) {
+  handleSubmit(event, username, playerID) {
+    event.preventDefault();
     this.setState({
       [playerID]: {
         login: username,
