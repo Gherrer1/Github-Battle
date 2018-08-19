@@ -1,6 +1,8 @@
 const React = require('react');
 const api = require('../utils/api');
 const Result = require('./Result');
+const queryString = require('query-string');
+const Link = require('react-router-dom').Link;
 
 class BattleGround extends React.Component {
     constructor(props) {
@@ -13,15 +15,18 @@ class BattleGround extends React.Component {
     }
 
     componentDidMount() {
-        let search = this.props.location.search;
-        let usernameKeyValues = search.slice(1).split('&');
-        const p1Username = usernameKeyValues[0].split('=')[1];
-        const p2Username = usernameKeyValues[1].split('=')[1];
+        let parsedQueryStr = queryString.parse(this.props.location.search);
+        const p1Username = parsedQueryStr.playerOneName;
+        const p2Username = parsedQueryStr.playerTwoName;
         api.battle([p1Username, p2Username])
             .then((profileDataArr) => {
                 console.log(profileDataArr);
                 if (profileDataArr === null) {
-                    return;
+                    return this.setState({
+                        error: `Looks like there was an error.
+                            Make sure both users have githubs.
+                        `,
+                    });
                 }
                 profileDataArr[0].won = true;
                 profileDataArr[1].won = false;
@@ -33,6 +38,14 @@ class BattleGround extends React.Component {
     }
 
     render() {
+        if (this.state.error) {
+            return (
+                <div>
+                    {this.state.error}
+                    <Link to='/battle'>Reset</Link>
+                </div>
+            );
+        }
         let p1 = this.state.playerOneData;
         let p2 = this.state.playerTwoData;
         return (
