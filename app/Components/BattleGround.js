@@ -14,20 +14,20 @@ class BattleGround extends React.Component {
 
     componentDidMount() {
         let search = this.props.location.search;
-        setTimeout(() => {
-            this.setState({
-                playerOneData: {
-                    name: 'greg',
-                    team: 'blazers',
-                    id: 1,
-                },
-                playerTwoData: {
-                    name: 'kevin',
-                    team: 'sonics',
-                    id: 2,
-                },
+        let usernameKeyValues = search.slice(1).split('&');
+        const p1Username = usernameKeyValues[0].split('=')[1];
+        const p2Username = usernameKeyValues[1].split('=')[1];
+        api.battle([p1Username, p2Username])
+            .then((profileDataArr) => {
+                console.log(profileDataArr);
+                if (profileDataArr === null) {
+                    return;
+                }
+                this.setState({
+                    playerOneData: profileDataArr[0],
+                    playerTwoData: profileDataArr[1],
+                });
             });
-        }, 1500);
     }
 
     render() {
@@ -38,7 +38,11 @@ class BattleGround extends React.Component {
                 {p1 && p2 ?
                     <div>
                         {[p1, p2].map((player) => (
-                            <Result key={player.id} playerData={player} />
+                            <div
+                                key={player.profile.id}
+                            >
+                                {JSON.stringify(player)}
+                            </div>
                         ))}
                     </div>
                     :
