@@ -6,7 +6,7 @@ function PlayerView(props) {
       <div className="player-item">
         <div className="column">
             <img src={props.playerData.avatar_url} className="usr-img"/>
-            <h2>{props.playerData.login}</h2>
+            <h2 className='username'>@{props.playerData.login}</h2>
 
             <button onClick={() => props.onReset(props.playerID)}>Reset</button>
         </div>

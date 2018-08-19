@@ -1,7 +1,7 @@
 const React = require('react');
 const PropTypes = require('prop-types');
 const PlayerViewContainer = require('./PlayerViewContainer');
-// import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class Battle extends React.Component {
 constructor(props) {
@@ -24,10 +24,11 @@ constructor(props) {
 
   handleSubmit(event, username, playerID) {
     event.preventDefault();
+    let trimmedUsername = username.trim();
     this.setState({
       [playerID]: {
-        login: username,
-        avatar_url: `https://github.com/${username}.png?size=200`,
+        login: trimmedUsername,
+        avatar_url: `https://github.com/${trimmedUsername}.png?size=200`,
       },
     });
   }
@@ -46,29 +47,35 @@ constructor(props) {
   }
 
   render() {
+    let match = this.props.match;
+    let p1 = this.state['Player One'];
+    let p2 = this.state['Player Two'];
     return (
       <div>
         <div className="row">
           <PlayerViewContainer
             onSubmit={this.handleSubmit}
             playerID="Player One"
-            playerData={this.state['Player One']}
+            playerData={p1}
             onReset={this.resetUser}
           />
           <PlayerViewContainer
             onSubmit={this.handleSubmit}
             playerID="Player Two"
-            playerData={this.state['Player Two']}
+            playerData={p2}
             onReset={this.resetUser}
           />
         </div>
-        {this.state['PlayerOne'] !== null && this.state['Player Two'] !== null ?
-          <div className="play-btn">
-            {/* {<Link to="/">Play</Link>} */}
-            {JSON.stringify(this.props.match)}
-          </div>
-          :
-          null
+        {p1 && p2 &&
+          <Link
+            className='button'
+            to={{
+              pathname: `${match.url}/results`,
+              search: `?playerOneName=${p1.login}&playerTwoName=${p2.login}`,
+            }}
+          >
+            Battle
+          </Link>
         }
       </div>
     );
