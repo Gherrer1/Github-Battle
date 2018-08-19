@@ -4,6 +4,7 @@ const Nav = require('./Nav');
 const Popular = require('./Popular');
 const Home = require('./Home');
 const Battle = require('./Battle');
+const BattleGround = require('./BattleGround');
 
 class App extends React.Component {
   render() {
@@ -15,6 +16,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/battle" component={Battle} />
+            <Route path='/battle/results' component={BattleGround} />
             <Route path="/popular" component={Popular} />
             {/* Default route for not found pages - 404 */}
             <Route render={() => (<p>Not Found.</p>)} />
