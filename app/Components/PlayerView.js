@@ -2,7 +2,6 @@ const React = require('react');
 const PropTypes = require('prop-types');
 
 function PlayerView(props) {
-    console.log(props.children);
     return (
         <div className="player-item">
           <div className="column">
@@ -15,8 +14,6 @@ function PlayerView(props) {
   }
   PlayerView.propTypes = {
     playerData: PropTypes.object,
-    onReset: PropTypes.func.isRequired,
-    playerID: PropTypes.string.isRequired,
   };
 
   module.exports = PlayerView;

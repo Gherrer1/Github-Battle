@@ -71,10 +71,6 @@ class PlayerViewContainer extends React.Component {
     :
     (<PlayerView
       playerData={this.props.playerData}
-      playerID={this.props.playerID}
-      onReset={
-        (playerID) => this.props.onReset(playerID) || this.resetUsername()
-      }
     >
       <button onClick={
         () => this.props.onReset(this.props.playerID) || this.resetUsername()
