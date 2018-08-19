@@ -65,7 +65,7 @@ class Popular extends React.Component {
         />
         {
           !this.state.repos ?
-          <Loading intervalTime={100} />
+          <Loading text='DOWNLOADING' intervalTime={100} />
             :
           <ReposList repos={this.state.repos} />
         }

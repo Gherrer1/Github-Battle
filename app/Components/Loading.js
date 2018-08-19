@@ -1,26 +1,29 @@
 const React = require('react');
+const PropTypes = require('prop-types');
 
 class Loading extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            text: 'Loading',
+            text: props.text,
         };
     }
 
     componentDidMount() {
-        let states = ['Loading', 'Loading.', 'Loading..', 'Loading...'];
-        let index = 0;
-        let that = this;
+        let stopper = `${this.props.text}...`;
         this.interval = setInterval(() => {
-            (function(i) {
-                that.setState({
-                    text: states[index],
-                });
-            })(index);
-            index++;
-            index = index % states.length;
+            this.setState((prevState) => {
+                if (prevState.text === stopper) {
+                    return {
+                        text: this.props.text,
+                    };
+                } else {
+                    return {
+                        text: `${prevState.text}.`,
+                    };
+                }
+            });
         }, this.props.intervalTime);
     }
 
@@ -30,12 +33,18 @@ class Loading extends React.Component {
 
     render() {
         return (
-            <div>{this.state.text}</div>
+            <div style={this.props.style}>{this.state.text}</div>
         );
     }
 }
+Loading.propTypes = {
+    text: PropTypes.string,
+    intervalTime: PropTypes.number,
+    style: PropTypes.object,
+},
 Loading.defaultProps = {
     intervalTime: 350,
+    text: 'Loading',
 };
 
 module.exports = Loading;
