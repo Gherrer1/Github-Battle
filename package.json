@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Gherrer1/Github-Battle#readme",
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
     "axios": "^0.18.0",
     "query-string": "^6.1.0",
     "react": "^16.4.2",

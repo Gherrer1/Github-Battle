@@ -3,7 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
-  entry: './app/index.js',
+  entry: ['@babel/polyfill', './app/index.js'],
   module: {
     rules: [
       {

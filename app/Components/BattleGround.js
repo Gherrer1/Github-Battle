@@ -1,9 +1,9 @@
-const React = require('react');
-const api = require('../utils/api');
-const Result = require('./Result');
-const queryString = require('query-string');
-const Link = require('react-router-dom').Link;
-const Loading = require('./Loading');
+import React from 'react';
+import * as api from '../utils/api';
+import Result from './Result';
+import queryString from 'query-string';
+import {Link} from 'react-router-dom';
+import Loading from './Loading';
 
 class BattleGround extends React.Component {
     constructor(props) {
@@ -68,4 +68,4 @@ class BattleGround extends React.Component {
     }
 }
 
-module.exports = BattleGround;
+export default BattleGround;

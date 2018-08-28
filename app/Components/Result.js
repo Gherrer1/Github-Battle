@@ -1,6 +1,6 @@
-const React = require('react');
-const PropTypes = require('prop-types');
-const PlayerView = require('./PlayerView');
+import React from 'react';
+import PropTypes from 'prop-types';
+import PlayerView from './PlayerView';
 
 function Result({playerData}) {
     let p = playerData;
@@ -28,4 +28,4 @@ Result.proptypes = {
     playerData: PropTypes.object.isRequired,
 };
 
-module.exports = Result;
+export default Result;

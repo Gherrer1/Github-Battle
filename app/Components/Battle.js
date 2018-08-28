@@ -1,6 +1,6 @@
-const React = require('react');
-const PropTypes = require('prop-types');
-const PlayerViewContainer = require('./PlayerViewContainer');
+import React from 'react';
+import PropTypes from 'prop-types';
+import PlayerViewContainer from './PlayerViewContainer';
 import {Link} from 'react-router-dom';
 
 class Battle extends React.Component {
@@ -35,19 +35,18 @@ constructor(props) {
 
   fetchUserData(username, playerID) {
     const api = require('../utils/api');
-    console.log(username, playerID);
     api.fetchUser(username)
-      .then((users) => console.log(users) || {
+      .then((users) => ({
         login: users[0].login,
         avatar_url: users[0].avatar_url,
-      })
+      }))
       .then((minimalUserData) => this.setState({
         [playerID]: minimalUserData,
       }));
   }
 
   render() {
-    let match = this.props.match;
+    let {match} = this.props;
     let p1 = this.state['Player One'];
     let p2 = this.state['Player Two'];
     return (
@@ -85,4 +84,4 @@ Battle.propTypes = {
   match: PropTypes.object,
 };
 
-module.exports = Battle;
+export default Battle;
