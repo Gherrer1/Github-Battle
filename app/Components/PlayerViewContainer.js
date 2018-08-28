@@ -48,6 +48,13 @@ class PlayerViewContainer extends React.Component {
     this.resetUsername = this.resetUsername.bind(this);
   }
 
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    playerID: PropTypes.string.isRequired,
+    playerData: PropTypes.object,
+    onReset: PropTypes.func.isRequired,
+  };
+
   resetUsername() {
     this.setState({
       username: '',
@@ -78,11 +85,5 @@ class PlayerViewContainer extends React.Component {
     </PlayerView>);
   }
 }
-PlayerViewContainer.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  playerID: PropTypes.string.isRequired,
-  playerData: PropTypes.object,
-  onReset: PropTypes.func.isRequired,
-};
 
 module.exports = PlayerViewContainer;
